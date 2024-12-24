@@ -39,12 +39,12 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (moveDirection.magnitude != 0)
 		{
-			rigidbody.drag = moveFree;
-			rigidbody.AddForce(moveSpeed * speedMultiplier * moveDirection, ForceMode2D.Force);
+			rigidbody.AddForce(moveSpeed * speedMultiplier * (1/rigidbody.velocity.magnitude) * moveDirection, ForceMode2D.Force);
 		}
-		else
-		{
-			rigidbody.drag = moveDumping;
-		}
+	}
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		Debug.Log("Hit!");
+		rigidbody.AddForce((transform.position - collision.transform.position), ForceMode2D.Impulse);
 	}
 }
