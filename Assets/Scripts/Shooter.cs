@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -9,16 +11,31 @@ public class Shooter : MonoBehaviour
 
 	[SerializeField] int delayBetweenShots = 300;
 	[SerializeField] int projectileSpeed = 2;
+
+	CancellationTokenSource cts = new CancellationTokenSource();
 	// Start is called before the first frame update
-	void Start()
+	async void Start()
 	{
-		StartShooting();
+		var task = StartShooting(cts.Token);
+
+		try
+		{
+			await task;
+		}
+		catch(OperationCanceledException) {
+			Debug.Log("shooter task cancelled");
+		}
 	}
 
-	async void StartShooting()
+	private void OnDestroy()
+	{
+		cts.Cancel();
+	}
+	async Task StartShooting(CancellationToken token)
 	{
 		while (true)
 		{
+			token.ThrowIfCancellationRequested();
 			var _proj = Instantiate(projectile);
 			_proj.transform.position = transform.position;
 			var _rb = _proj.GetComponent<Rigidbody2D>();

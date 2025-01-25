@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IHitable
 {
-	Rigidbody2D rigidbody;
+	Rigidbody2D playerRB;
 	Vector2 moveDirection;
 
 	//basic movement
@@ -12,10 +12,11 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] float speedMultiplier;
 	[SerializeField] float moveDumping = 0.8f;
 	[SerializeField] float moveFree = 5f;
-
+	[SerializeField] AnimationCurve forceMultiplier;
+	float GetForceMultiplierValue(float value) => forceMultiplier.Evaluate(value);
 	void Start()
 	{
-		rigidbody = GetComponent<Rigidbody2D>();
+		playerRB = GetComponent<Rigidbody2D>();
 	}
 
 	private void Update()
@@ -39,12 +40,12 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (moveDirection.magnitude != 0)
 		{
-			rigidbody.AddForce(moveSpeed * speedMultiplier * (1/rigidbody.velocity.magnitude) * moveDirection, ForceMode2D.Force);
+			playerRB.AddForce(moveSpeed * speedMultiplier * GetForceMultiplierValue(playerRB.velocity.magnitude) * moveDirection, ForceMode2D.Force);
 		}
 	}
-	private void OnTriggerEnter2D(Collider2D collision)
+
+	public void Hit(GameObject WhoHits)
 	{
-		Debug.Log("Hit!");
-		rigidbody.AddForce((transform.position - collision.transform.position), ForceMode2D.Impulse);
+		playerRB.AddForce((transform.position - WhoHits.transform.position) * 10, ForceMode2D.Impulse);
 	}
 }
