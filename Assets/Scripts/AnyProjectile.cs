@@ -18,9 +18,14 @@ public class AnyProjectile : MonoBehaviour
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Debug.Log("Hit!");
-		collision.GetComponent<IHitable>()?.Hit(gameObject);
+		var _hit = collision.GetComponent<IHitable>();
+		if (_hit != null)
+		{
+			_hit.Hit(gameObject);
+			collision.GetComponent<Rigidbody2D>()?.AddForce((collision.transform.position - gameObject.transform.position) * 10, ForceMode2D.Impulse);
 
+			Destroy(gameObject);
+		}
 		//playerRB.AddForce((transform.position - collision.transform.position) * 50, ForceMode2D.Impulse);
 	}
 }

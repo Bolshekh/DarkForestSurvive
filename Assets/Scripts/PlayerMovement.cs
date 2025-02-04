@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour, IHitable
 {
 	Rigidbody2D playerRB;
 	Vector2 moveDirection;
+	Vector2 lookDirection;
+	Animator animator;
 
 	//basic movement
 	[SerializeField] float moveSpeed;
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour, IHitable
 	void Start()
 	{
 		playerRB = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
 	}
 
 	private void Update()
@@ -34,6 +37,13 @@ public class PlayerMovement : MonoBehaviour, IHitable
 		var _vert = Input.GetAxis("Vertical");
 
 		moveDirection = new Vector2(_hor, _vert).normalized;
+
+		var _mouse = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+		lookDirection = _mouse - (Vector2)transform.position;
+
+		if (Input.GetButtonDown("Fire1"))
+			animator.Play("Swinging");
 	}
 
 	void ApplyMovement()
@@ -42,10 +52,12 @@ public class PlayerMovement : MonoBehaviour, IHitable
 		{
 			playerRB.AddForce(moveSpeed * speedMultiplier * GetForceMultiplierValue(playerRB.velocity.magnitude) * moveDirection, ForceMode2D.Force);
 		}
+
+		transform.rotation = Quaternion.FromToRotation(Vector2.up, lookDirection);
 	}
 
 	public void Hit(GameObject WhoHits)
 	{
-		playerRB.AddForce((transform.position - WhoHits.transform.position) * 10, ForceMode2D.Impulse);
+
 	}
 }
