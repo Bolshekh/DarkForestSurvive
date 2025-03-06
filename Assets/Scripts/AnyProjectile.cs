@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnyProjectile : MonoBehaviour
+public class AnyProjectile : MonoBehaviour, IHitable
 {
 	[SerializeField] float timeToLive = 5f;
 	void Start()
@@ -27,5 +27,10 @@ public class AnyProjectile : MonoBehaviour
 			Destroy(gameObject);
 		}
 		//playerRB.AddForce((transform.position - collision.transform.position) * 50, ForceMode2D.Impulse);
+	}
+
+	public void Hit(GameObject WhoHits)
+	{
+		Destroy(gameObject);
 	}
 }

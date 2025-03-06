@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour, IHitable
+public class PlayerMovement : MonoBehaviour
 {
 	Rigidbody2D playerRB;
 	Vector2 moveDirection;
@@ -54,10 +54,5 @@ public class PlayerMovement : MonoBehaviour, IHitable
 		}
 
 		transform.rotation = Quaternion.FromToRotation(Vector2.up, lookDirection);
-	}
-
-	public void Hit(GameObject WhoHits)
-	{
-
 	}
 }
