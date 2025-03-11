@@ -21,15 +21,14 @@ public class AnyProjectile : MonoBehaviour, IHitable
 		var _hit = collision.GetComponent<IHitable>();
 		if (_hit != null)
 		{
-			_hit.Hit(gameObject);
+			_hit.Hit(new HitInfo() { Damage = 1, Hitter = this.gameObject });
 			collision.GetComponent<Rigidbody2D>()?.AddForce((collision.transform.position - gameObject.transform.position) * 10, ForceMode2D.Impulse);
 
-			Destroy(gameObject);
 		}
-		//playerRB.AddForce((transform.position - collision.transform.position) * 50, ForceMode2D.Impulse);
+		Destroy(gameObject);
 	}
 
-	public void Hit(GameObject WhoHits)
+	public void Hit(HitInfo hitInfo)
 	{
 		Destroy(gameObject);
 	}

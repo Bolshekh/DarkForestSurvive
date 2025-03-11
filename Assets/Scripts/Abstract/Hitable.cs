@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IHitable
 {
-	public void Hit(GameObject WhoHits);
+	public void Hit(HitInfo hitInfo);
 }

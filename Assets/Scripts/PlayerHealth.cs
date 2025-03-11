@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IHitable
 {
-	[SerializeField] int healthPoints = 3;
-	[SerializeField] int maxHealthPoints = 3;
+	[SerializeField] float healthPoints = 3f;
+	[SerializeField] float maxHealthPoints = 3f;
 	public event EventHandler PlayerHit;
 	public event EventHandler PlayerDied;
 	public event EventHandler<PlayerHealedEventArgs> PlayerHealed;
-	public void Hit(GameObject WhoHits)
+	public void Hit(HitInfo hitInfo)
 	{
-		healthPoints--;
+		healthPoints -= hitInfo.Damage;
 		PlayerHit?.Invoke(this, EventArgs.Empty);
 		if(healthPoints <= 0)
 		{

@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
 
 		if (Input.GetButtonDown("Fire1"))
 			animator.Play("Swinging");
+
+		if (Input.GetButtonDown("Fire2"))
+			animator.Play("Parrying");
 	}
 
 	void ApplyMovement()
