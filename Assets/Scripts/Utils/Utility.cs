@@ -10,13 +10,19 @@ namespace System.Runtime.CompilerServices
 	internal class IsExternalInit { }
 }
 
-public class PlayerHealedEventArgs : EventArgs
+public class EntityHealedEventArgs : EventArgs
 {
 	public int PointsHealed;
 	/// <summary>
-	/// If player was in fact healed. If player had max health he will recieve heal, but will not be getting any healing
+	/// If entity was in fact healed. If entity had max health he will recieve heal (true), but will not be getting any healing (false)
 	/// </summary>
-	public bool IsPlayerHealed;
+	public bool IsEntityHealed;
+}
+
+public class WeaponHitEventArgs : EventArgs
+{
+	public IHitable Hit { get; init; }
+	public Collider2D Collision { get; init; }
 }
 
 public class HitInfo

@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
 	//basic movement
 	[SerializeField] float moveSpeed;
 	[SerializeField] float speedMultiplier;
-	[SerializeField] float moveDumping = 0.8f;
-	[SerializeField] float moveFree = 5f;
+	//[SerializeField] float moveDumping = 0.8f;
+	//[SerializeField] float moveFree = 5f;
 	[SerializeField] AnimationCurve forceMultiplier;
 	float GetForceMultiplierValue(float value) => forceMultiplier.Evaluate(value);
 	void Start()
