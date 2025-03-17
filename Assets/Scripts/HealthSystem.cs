@@ -18,7 +18,6 @@ public class HealthSystem : MonoBehaviour, IHitable
 		{
 			Debug.Log($"Entity {gameObject.name} DIED");
 			EntityDied?.Invoke(this, EventArgs.Empty);
-			Destroy(gameObject);
 		}
 	}
 	public void Heal(int Points)

@@ -17,7 +17,6 @@ public class Weapon : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Debug.Log("weapon hit");
 		var _hit = collision.GetComponent<IHitable>();
 		if (_hit != null)
 		{

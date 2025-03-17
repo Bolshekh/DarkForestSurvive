@@ -6,6 +6,7 @@ public class EnemyAttacking : MonoBehaviour
 {
 	EnemyMovement enemyMovement;
 	Animator animator;
+	
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -16,7 +17,7 @@ public class EnemyAttacking : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (enemyMovement.IsInAttackDistance)
+		if (enemyMovement.IsInAttackDistance && !enemyMovement.IsEnemyDying)
 		{
 			animator.Play("Attack");
 		}
