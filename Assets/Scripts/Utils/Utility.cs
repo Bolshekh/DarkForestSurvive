@@ -19,6 +19,15 @@ public class EntityHealedEventArgs : EventArgs
 	public bool IsEntityHealed;
 }
 
+public class BeforeEntityHitEventArgs : EventArgs
+{
+	public HitInfo HitInfo { get; init; }
+	/// <summary>
+	/// If entity hit event chould be calcelled due to something
+	/// </summary>
+	public bool IsCancelled { get; set; }
+}
+
 public class WeaponHitEventArgs : EventArgs
 {
 	public IHitable Hit { get; init; }
@@ -31,6 +40,14 @@ public class HitInfo
 	/// <summary>
 	/// Gameobject that hits victim
 	/// </summary>
-	public GameObject Hitter;
+	public GameObject Hitter { get; init; }
 	public float Damage { get; init; }
+}
+
+[Flags]
+public enum HitResponse
+{
+	Hit = 1,
+	Ignore = 2,
+	PassThrough = 4
 }

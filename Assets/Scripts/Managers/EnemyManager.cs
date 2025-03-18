@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+	public static EnemyManager Manager { get; private set; }
 	[SerializeField] GameObject enemy;
 	[SerializeField] int maxEnemies;
 	[SerializeField] float spawnDiameter;
@@ -12,7 +13,7 @@ public class EnemyManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		
+		Manager = this;
 	}
 
 	// Update is called once per frame

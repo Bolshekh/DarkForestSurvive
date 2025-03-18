@@ -7,22 +7,30 @@ public class HealthSystem : MonoBehaviour, IHitable
 {
 	[SerializeField] float healthPoints = 3f;
 	[SerializeField] float maxHealthPoints = 3f;
+
+	public event EventHandler<BeforeEntityHitEventArgs> BeforeEntityHit;
 	public event EventHandler EntityHit;
 	public event EventHandler EntityDied;
 	public event EventHandler<EntityHealedEventArgs> EntityHealed;
-	public void Hit(HitInfo hitInfo)
+	public HitResponse Hit(HitInfo hitInfo)
 	{
+		BeforeEntityHitEventArgs _beh = new BeforeEntityHitEventArgs();
+		BeforeEntityHit?.Invoke(gameObject, _beh);
+
+		if (_beh.IsCancelled) return HitResponse.Ignore;
+
 		healthPoints -= hitInfo.Damage;
-		EntityHit?.Invoke(this, EventArgs.Empty);
+		EntityHit?.Invoke(gameObject, EventArgs.Empty);
 		if(healthPoints <= 0)
 		{
 			Debug.Log($"Entity {gameObject.name} DIED");
-			EntityDied?.Invoke(this, EventArgs.Empty);
+			EntityDied?.Invoke(gameObject, EventArgs.Empty);
 		}
+		return HitResponse.Hit;
 	}
 	public void Heal(int Points)
 	{
-		EntityHealed?.Invoke(this, new EntityHealedEventArgs() { PointsHealed  = Points, IsEntityHealed = healthPoints < maxHealthPoints });
+		EntityHealed?.Invoke(gameObject, new EntityHealedEventArgs() { PointsHealed  = Points, IsEntityHealed = healthPoints < maxHealthPoints });
 		if (healthPoints < maxHealthPoints)
 			healthPoints += Points;
 

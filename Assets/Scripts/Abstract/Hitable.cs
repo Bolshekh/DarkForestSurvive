@@ -4,5 +4,9 @@ using UnityEngine;
 
 public interface IHitable
 {
-	public void Hit(HitInfo hitInfo);
+	/// <summary>
+	/// gmgajg
+	/// </summary>
+	/// <param name="hitInfo"></param>
+	public HitResponse Hit(HitInfo hitInfo);
 }

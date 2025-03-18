@@ -9,6 +9,11 @@ public class EnemyInit : MonoBehaviour
 	void Start()
 	{
 		HealthSystem _healthSystem = GetComponent<HealthSystem>();
+		_healthSystem.BeforeEntityHit += (s, e) =>
+		{
+			if (e.HitInfo.Hitter.tag == "Enemy")
+				e.IsCancelled = true;
+		};
 		_healthSystem.EntityHit += (s, e) =>
 		{
 			UseHitParticles();

@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 363640448}
   - component: {fileID: 363640449}
   - component: {fileID: 363640452}
+  - component: {fileID: 363640453}
   - component: {fileID: 363640450}
   - component: {fileID: 363640451}
   m_Layer: 0
@@ -390,6 +391,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoints: 3
   maxHealthPoints: 3
+--- !u!114 &363640453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363640445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394978423b4d42046a512d35b0c3f1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5817,6 +5830,7 @@ GameObject:
   - component: {fileID: 1845010544}
   - component: {fileID: 1845010543}
   - component: {fileID: 1845010545}
+  - component: {fileID: 1845010546}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -5867,6 +5881,19 @@ MonoBehaviour:
   enemy: {fileID: 4697582835808217674, guid: a332367660a631340a3946346013b4fb, type: 3}
   maxEnemies: 3
   spawnDiameter: 40
+--- !u!114 &1845010546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845010542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bc252e1abd3ab469cc4b0a2ed1509b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeSpeed: 9078
 --- !u!1 &1907594894
 GameObject:
   m_ObjectHideFlags: 3
