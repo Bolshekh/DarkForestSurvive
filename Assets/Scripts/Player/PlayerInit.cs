@@ -16,7 +16,7 @@ public class PlayerInit : MonoBehaviour
 		};
 		_healthSystem.EntityHit += (s, e) =>
 		{
-
+			TimeManager.Manager.SlowMotion(250);
 		};
 	}
 }

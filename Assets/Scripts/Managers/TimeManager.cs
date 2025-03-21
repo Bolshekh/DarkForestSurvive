@@ -7,37 +7,49 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-	[SerializeField] float TimeScale = 0.5f; 
+	[SerializeField] float timeScale = 0.5f; 
 	public static TimeManager Manager { get; private set; }
 	CancellationTokenSource cts = new CancellationTokenSource();
 	private void Start()
 	{
 		Manager = this;
+		SlowTime();
 	}
 
-	[ReadOnly][SerializeField] float timeSpeed = 1;
 	List<Task> slowMotions = new List<Task>();
-
-	public async Task SlowTime(int millisecons, CancellationToken token)
+	private const float normalTimeScale = 1f;
+	private async Task SlowTime(int millisecons, CancellationToken token)
 	{
 		token.ThrowIfCancellationRequested();
 
-		timeSpeed = Time.timeScale;
-		Time.timeScale = TimeScale;
-
+		
 		await Task.Delay(millisecons);
 	}
 
-	public void SlowTime()
+	private async void SlowTime()
 	{
-		slowMotions.Add(SlowTime(1000, cts.Token));
-		try
+		while (true)
 		{
-			Task.WaitAll(slowMotions.ToArray(), cts.Token);
+			if (slowMotions.Count > 0)
+			{
+				try
+				{
+					Time.timeScale = timeScale;
+
+					await Task.WhenAll(slowMotions);
+
+					slowMotions.Clear();
+					Time.timeScale = normalTimeScale;
+				}
+				catch (OperationCanceledException)
+				{
+					Debug.Log("slow motion tasks cancelled");
+				}
+			}
 		}
-		catch(OperationCanceledException)
-		{
-			Debug.Log("slow motion tasks cancelled");
-		}
+	}
+	public void SlowMotion(int milliseconds)
+	{
+		slowMotions.Add(SlowTime(milliseconds, cts.Token));
 	}
 }
