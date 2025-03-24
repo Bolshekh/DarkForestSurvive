@@ -19,13 +19,20 @@ public class EntityHealedEventArgs : EventArgs
 	public bool IsEntityHealed;
 }
 
-public class BeforeEntityHitEventArgs : EventArgs
+public class EntityHitEventArgs : EventArgs
 {
+	public EntityHitEventArgs(HitInfo HitInfo)
+	{
+		this.HitInfo = HitInfo;
+	}
+
 	public HitInfo HitInfo { get; init; }
 	/// <summary>
 	/// If entity hit event chould be calcelled due to something
 	/// </summary>
 	public bool IsCancelled { get; set; }
+	public float HealthBefore { get; set; }
+	public float HealthAfter { get; set; }
 }
 
 public class WeaponHitEventArgs : EventArgs

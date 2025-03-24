@@ -11,7 +11,7 @@ public class EnemyInit : MonoBehaviour
 		HealthSystem _healthSystem = GetComponent<HealthSystem>();
 		_healthSystem.BeforeEntityHit += (s, e) =>
 		{
-			if (e.HitInfo.Hitter.tag == "Enemy")
+			if (e.HitInfo.Hitter.transform.root.CompareTag("Enemy"))
 				e.IsCancelled = true;
 		};
 		_healthSystem.EntityHit += (s, e) =>

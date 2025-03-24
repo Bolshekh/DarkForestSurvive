@@ -13,6 +13,10 @@ public class TimeManager : MonoBehaviour
 	private void Start()
 	{
 		Manager = this;
+		//SlowTime();
+	}
+	private void Awake()
+	{
 		SlowTime();
 	}
 
@@ -46,6 +50,7 @@ public class TimeManager : MonoBehaviour
 					Debug.Log("slow motion tasks cancelled");
 				}
 			}
+			await Task.Delay(100);
 		}
 	}
 	public void SlowMotion(int milliseconds)

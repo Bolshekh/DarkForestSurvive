@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
 	[SerializeField] int maxEnemies;
 	[SerializeField] float spawnDiameter;
 	List<GameObject> enemies = new List<GameObject>();
-
+	bool autoSpawn = false;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -19,12 +19,16 @@ public class EnemyManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(enemies.Count < maxEnemies)
+		if(enemies.Count < maxEnemies && autoSpawn)
 		{
 			SpawnEnemy();
 		}
 	}
-	void SpawnEnemy()
+	public void SwitchAutoSpawn()
+	{
+		autoSpawn = !autoSpawn;
+	}
+	public void SpawnEnemy()
 	{
 		var _playerPos = PlayerManager.Player.transform.position;
 		float _x = Random.Range(0, spawnDiameter);

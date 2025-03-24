@@ -5,13 +5,22 @@ using UnityEngine;
 public class StickWeapon : Weapon
 {
 	// Start is called before the first frame update
+	List<GameObject> Hits = new List<GameObject>();
 	void Start()
 	{
 		WeaponHit += (s, e) =>
 		{
+			if (Hits.Contains(e.Collision.gameObject))
+				return;
+
+			Hits.Add(e.Collision.gameObject);
 			e.Hit.Hit(new HitInfo() { Damage = this.Damage, Hitter = gameObject, Weapon = this });
 			e.Collision.GetComponent<Rigidbody2D>()?
 			.AddForce((e.Collision.transform.position - gameObject.transform.position) * 10, ForceMode2D.Impulse);
 		};
+	}
+	public void ClearList()
+	{
+		Hits.Clear();
 	}
 }
