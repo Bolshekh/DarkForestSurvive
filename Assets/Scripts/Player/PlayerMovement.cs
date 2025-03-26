@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 	Vector2 moveDirection;
 	Vector2 lookDirection;
 	Animator animator;
+	PlayerAttacks attacks;
 
 	//basic movement
 	[SerializeField] float moveSpeed;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 	void Start()
 	{
 		playerRB = GetComponent<Rigidbody2D>();
+		attacks = GetComponent<PlayerAttacks>();
 		animator = GetComponent<Animator>();
 	}
 
@@ -43,10 +45,10 @@ public class PlayerMovement : MonoBehaviour
 		lookDirection = _mouse - (Vector2)transform.position;
 
 		if (Input.GetButtonDown("Fire1"))
-			animator.Play("Swinging");
+			attacks.Attack();
 
 		if (Input.GetButtonDown("Fire2"))
-			animator.Play("Parrying");
+			attacks.Defend();
 	}
 
 	void ApplyMovement()
