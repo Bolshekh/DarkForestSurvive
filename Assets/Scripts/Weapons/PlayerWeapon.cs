@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StickWeapon : Weapon
+public class PlayerWeapon : Weapon
 {
 	// Start is called before the first frame update
-	List<GameObject> Hits = new List<GameObject>();
 	void Start()
 	{
 		WeaponHit += (s, e) =>
@@ -15,12 +14,10 @@ public class StickWeapon : Weapon
 
 			Hits.Add(e.Collision.gameObject);
 			e.Hit.Hit(new HitInfo() { Damage = this.Damage, Hitter = gameObject, Weapon = this });
-			e.Collision.GetComponent<Rigidbody2D>()?
-			.AddForce((e.Collision.transform.position - gameObject.transform.position) * 10, ForceMode2D.Impulse);
+			List<ContactPoint2D> _contacts = new List<ContactPoint2D>();
+			e.Collision.GetContacts(_contacts);
+			e.Collision.attachedRigidbody
+			.AddForce((e.Collision.transform.position - (Vector3)_contacts[0].point) * Knockback, ForceMode2D.Impulse);
 		};
-	}
-	public void ClearList()
-	{
-		Hits.Clear();
 	}
 }

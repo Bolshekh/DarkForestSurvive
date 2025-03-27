@@ -433,7 +433,9 @@ GameObject:
   - component: {fileID: 363640446}
   - component: {fileID: 363640448}
   - component: {fileID: 363640449}
+  - component: {fileID: 363640455}
   - component: {fileID: 363640452}
+  - component: {fileID: 363640454}
   - component: {fileID: 363640453}
   - component: {fileID: 363640450}
   - component: {fileID: 363640451}
@@ -632,7 +634,7 @@ Animator:
   m_GameObject: {fileID: 363640445}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: df515fed6869a18488b075d5cebf0724, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7bf96b2bf72891848958e91d0699b7a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -670,6 +672,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 1232950985}
+--- !u!114 &363640454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363640445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b21136e6dfb5bb4f8106daaec8ba225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animHash: []
+--- !u!114 &363640455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363640445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a658942efdaeb244b765f77c8377633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,8 +1162,8 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -7201,6 +7228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDamage: 1
+  weaponKnockback: 0
 --- !u!1 &2050359312
 GameObject:
   m_ObjectHideFlags: 0

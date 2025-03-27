@@ -6,7 +6,13 @@ public class Weapon : MonoBehaviour
 {
 	[SerializeField] float weaponDamage;
 	public float Damage => weaponDamage;
+
+	[SerializeField] float weaponKnockback;
+	public float Knockback => weaponKnockback;
+
 	public event EventHandler<WeaponHitEventArgs> WeaponHit;
+
+	protected List<GameObject> Hits = new List<GameObject>();
 	void Start()
 	{
 		WeaponHit += (s, e) =>
@@ -22,5 +28,9 @@ public class Weapon : MonoBehaviour
 		{
 			WeaponHit?.Invoke(this, new WeaponHitEventArgs() { Hit = _hit, Collision = collision });
 		}
+	}
+	public void ClearList()
+	{
+		Hits.Clear();
 	}
 }
