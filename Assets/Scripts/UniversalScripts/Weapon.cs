@@ -29,7 +29,7 @@ public class Weapon : MonoBehaviour
 			WeaponHit?.Invoke(this, new WeaponHitEventArgs() { Hit = _hit, Collision = collision });
 		}
 	}
-	public void ClearList()
+	public void ClearHitList()
 	{
 		Hits.Clear();
 	}

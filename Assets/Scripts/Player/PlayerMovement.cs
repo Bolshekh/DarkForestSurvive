@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 		if (Input.GetButtonDown("Fire1"))
 			attacks.Attack();
 
-		if (Input.GetButtonDown("Fire2"))
+		if (Input.GetButtonUp("Fire2"))
 			attacks.Defend();
 	}
 

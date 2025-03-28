@@ -49,6 +49,7 @@ public class HitInfo
 	/// </summary>
 	public GameObject Hitter { get; init; }
 	public float Damage { get; init; }
+	public Vector3 Knockback { get; set; }
 }
 
 [Flags]
