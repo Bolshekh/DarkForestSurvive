@@ -59,3 +59,20 @@ public enum HitResponse
 	Ignore = 2,
 	PassThrough = 4
 }
+
+public struct HelperAnimation
+{
+	public HelperAnimation(string StateName, float TransitionDuration = 0f, bool LockAnimation = false, bool InterruptableAnimation = false, bool Interruptor = false)
+	{
+		this.StateName = StateName;
+		this.TransitionDuration = TransitionDuration = 0f;
+		this.LockAnimation = LockAnimation = false;
+		this.InterruptableAnimation = InterruptableAnimation = false;
+		this.Interruptor = Interruptor = false;
+	}
+	public string StateName { get; set; }
+	public float TransitionDuration { get; set; }
+	public bool LockAnimation { get; set; }
+	public bool InterruptableAnimation { get; set; }
+	public bool Interruptor { get; set; }
+}

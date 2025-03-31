@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 363640452}
   - component: {fileID: 363640454}
   - component: {fileID: 363640453}
+  - component: {fileID: 363640456}
   - component: {fileID: 363640450}
   - component: {fileID: 363640451}
   m_Layer: 0
@@ -696,6 +697,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a658942efdaeb244b765f77c8377633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &363640456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363640445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Animator: {fileID: 363640451}
+  _Transitions: {fileID: 0}
+  _ActionOnDisable: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -7315,10 +7331,6 @@ PrefabInstance:
     - target: {fileID: 4697582835808217674, guid: a332367660a631340a3946346013b4fb, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 6058034651265796322, guid: a332367660a631340a3946346013b4fb, type: 3}
-      propertyPath: moveSpeed
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDamage: 1
+  weaponKnockback: 0
 --- !u!1 &4697582835808217674
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 3
-  moveSpeed: 5
+  moveSpeed: 3.45
 --- !u!114 &8802238215321385211
 MonoBehaviour:
   m_ObjectHideFlags: 0

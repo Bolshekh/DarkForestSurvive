@@ -14,21 +14,28 @@ public class PlayerAttacks : MonoBehaviour
 		animatorHelper = GetComponent<AnimatorHelper>();
 		weapon = GetComponentInChildren<PlayerWeapon>();
 	}
-	public async void Attack()
+	public void Attack()
 	{
-		await animatorHelper.PlayAnimation("AttackPrepare", LockAnimation: true, InterruptableAnimation: true);
-		BoxCollider2D box = GetComponentsInChildren<BoxCollider2D>().Where(b => b.isTrigger).First();
-		box.enabled = true;
-		await animatorHelper.PlayAnimation("AttackSwing", LockAnimation: true);
-		box.enabled = false;
-		weapon.ClearHitList();
-		await animatorHelper.PlayAnimation("AttackRecover", LockAnimation: true, InterruptableAnimation: true);
-		await animatorHelper.PlayAnimation("Idle");
+		HelperAnimation[] helpers = new HelperAnimation[]
+		{
+			new HelperAnimation("AttackPrepare", LockAnimation: true, InterruptableAnimation: true),
+			//new HelperAnimation("AttackSwing", LockAnimation: true),
+			//new HelperAnimation("AttackRecover", LockAnimation: true, InterruptableAnimation: true),
+			//new HelperAnimation("Idle"),
+
+		};
+		animatorHelper.PlayAnimation(helpers);
 	}
-	public async void Defend()
+	public void Defend()
 	{
-		await animatorHelper.PlayAnimation("ParryPrepare", LockAnimation: true, Interruptor: true);
-		await animatorHelper.PlayAnimation("ParryDefence", LockAnimation: true);
-		await animatorHelper.PlayAnimation("ParryRecover", LockAnimation: true, InterruptableAnimation: true);
+		HelperAnimation[] helpers = new HelperAnimation[]
+		{
+			new HelperAnimation("ParryPrepare", LockAnimation: true, Interruptor: true),
+			new HelperAnimation("ParryDefence", LockAnimation: true),
+			new HelperAnimation("ParryRecover", LockAnimation: true, InterruptableAnimation: true),
+			new HelperAnimation("Idle"),
+
+		};
+		animatorHelper.PlayAnimation(helpers);
 	}
 }
